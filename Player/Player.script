@@ -1,8 +1,8 @@
 -- player.script
 
-local speed = 300      -- Adjust the speed as needed
-local gravity = -100    -- Adjust the gravity as needed
-local swimHeight = 200   -- The max height one touch can swim up
+local speed = 280      -- Adjust the speed as needed
+local gravity = -90    -- Adjust the gravity as needed
+local swimHeight = 125   -- The max height one touch can swim up
 
 -- debug
 local debugMode = true
