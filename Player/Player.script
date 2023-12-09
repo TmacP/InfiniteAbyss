@@ -1,0 +1,47 @@
+local acceleration = 100
+local velocity = 0
+local maxVelocity = 100
+local gravity = 200
+
+function init(self)
+	-- Add initialization code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+	self.is_touching = false
+end
+
+function update(self, dt)
+	-- Apply acceleration to the velocity
+	velocity = velocity + acceleration * dt
+
+	-- Limit the velocity to the maximum allowed
+	if velocity > maxVelocity then
+		velocity = maxVelocity
+	elseif velocity < -maxVelocity then
+		velocity = -maxVelocity
+	end
+
+	-- Move the seahorse based on the velocity
+	go.set_position(vmath.vector3(go.get_position().x, go.get_position().y + velocity * dt, 0))
+
+	-- Simulate downward movement when not pressing touch
+	if not self.is_touching then
+		-- Adjust position based on gravity
+		local new_y = go.get_position().y - gravity * dt
+		go.set_position(vmath.vector3(go.get_position().x, new_y, 0))
+	end
+end
+
+function on_input(self, action_id, action)
+	if action_id == hash("touch") then
+		if action.pressed then
+			-- Finger touched the screen
+			velocity = -maxVelocity -- Move upwards
+			self.is_touching = true
+		elseif action.released then
+			-- Finger released from the screen
+			velocity = 0 -- Stop moving
+			self.is_touching = false
+		end
+	end
+end
