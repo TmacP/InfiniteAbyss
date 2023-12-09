@@ -1,10 +1,12 @@
 -- player.script
 
-local speed = 300  -- Adjust the speed as needed
-local gravity = -100  -- Adjust the gravity as needed
+local speed = 300      -- Adjust the speed as needed
+local gravity = -100    -- Adjust the gravity as needed
+local swimHeight = 200   -- The max height one touch can swim up
 
 function init(self)
 	msg.post(".", "acquire_input_focus")  -- Acquire input focus for the script
+	self.currentHeight = 0  -- Initialize the current height
 end
 
 function on_input(self, action_id, action)
@@ -13,8 +15,9 @@ function on_input(self, action_id, action)
 			-- When the screen is touched, set a flag to move the player up
 			self.is_touched = true
 		elseif action.released then
-			-- When the touch is released, set the flag to false
+			-- When the touch is released, set the flag to false and reset current height
 			self.is_touched = false
+			self.currentHeight = 0
 		end
 	end
 end
@@ -23,8 +26,10 @@ function update(self, dt)
 	-- Apply gravity continuously to make the player sink when not touched
 	go.set_position(vmath.vector3(go.get_position().x, go.get_position().y + gravity * dt, 0))
 
-	-- Move the player up if the touch flag is true
-	if self.is_touched then
-		go.set_position(vmath.vector3(go.get_position().x, go.get_position().y + speed * dt, 0))
+	-- Move the player up if the touch flag is true and the current height is below swimHeight
+	if self.is_touched and self.currentHeight < swimHeight then
+		local deltaY = math.min(speed * dt, swimHeight - self.currentHeight)
+		go.set_position(vmath.vector3(go.get_position().x, go.get_position().y + deltaY, 0))
+		self.currentHeight = self.currentHeight + deltaY
 	end
 end
