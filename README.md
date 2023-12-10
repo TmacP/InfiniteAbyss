@@ -1,9 +1,6 @@
-# InfiniteAbyss Dev log
-### Fri Dec 8
-- get background
-- player sprite
-- player movement 
+# InfiniteAbyss
 
-### Saturday Dec 9
-- player movement up and down
-- procedurally generated levels
+# TODO
+- [ ] Collision
+- [ ] Left/Right Movement
+- [ ] Level Generation

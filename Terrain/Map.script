@@ -1,4 +1,4 @@
-local debugMode = true
+local debugMode = false
 
 if debugMode then print("Map Debug") end
 
@@ -25,4 +25,11 @@ function init(self)
 
 	-- set the tile to that num
 	tilemap.set_tile(url,"layer1",x,y,1)
+
+	--[[ Set all tiles to a specific tile index (1 in this case)
+	for i = x, x + width - 1 do
+		for j = y, y + height - 1 do
+			tilemap.set_tile(url, "layer1", i, j, 1)
+		end
+	end--]]
 end

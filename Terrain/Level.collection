@@ -1,7 +1,7 @@
 name: "Level"
 scale_along_z: 0
 embedded_instances {
-  id: "level"
+  id: "Ground"
   data: "components {\n"
   "  id: \"Map\"\n"
   "  component: \"/Terrain/Map.script\"\n"
@@ -44,8 +44,8 @@ embedded_instances {
   "mass: 0.0\\n"
   "friction: 0.1\\n"
   "restitution: 0.5\\n"
-  "group: \\\"default\\\"\\n"
-  "mask: \\\"default\\\"\\n"
+  "group: \\\"Ground\\\"\\n"
+  "mask: \\\"Player\\\"\\n"
   "linear_damping: 0.0\\n"
   "angular_damping: 0.0\\n"
   "locked_rotation: false\\n"
