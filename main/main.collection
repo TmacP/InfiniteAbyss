@@ -3,8 +3,8 @@ collection_instances {
   id: "Level"
   collection: "/Terrain/Level.collection"
   position {
-    x: -81.0
-    y: 147.0
+    x: 0.0
+    y: 0.0
     z: 0.0
   }
   rotation {

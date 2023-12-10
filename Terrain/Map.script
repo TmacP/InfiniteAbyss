@@ -9,7 +9,7 @@ function init(self)
 	if debugMode then print(("Tile Source Path: %s"):format(self.my_tile_source)) end
 	go.set("#Level", "tile_source", self.my_tile_source)
 
-	-- Assuming the tilemap is named "foreground" and you want to set all tiles to null
+	-- Assuming the tilemap is named "Level"
 	local url = "#Level"
 
 	-- Get the bounds of the tilemap
@@ -17,7 +17,12 @@ function init(self)
 	local x, y, width, height = tilemap.get_bounds(url)
 
 	-- Print the bounds
-	if debugMode then
-		print(("Tilemap Bounds - X: %d, Y: %d, Width: %d, Height: %d"):format(x, y, width, height))
-	end
+	if debugMode then print(("Tilemap Bounds - X: %d, Y: %d, Width: %d, Height: %d"):format(x, y, width, height)) end
+
+	-- get the tile nu.
+	local tileno = tilemap.get_tile(url, "layer1", x, y)
+	if debugMode then print(("Get tile - , tileno: %d"):format(tileno)) end
+
+	-- set the tile to that num
+	tilemap.set_tile(url,"layer1",x,y,1)
 end
