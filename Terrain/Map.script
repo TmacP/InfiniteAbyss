@@ -1,0 +1,23 @@
+local debugMode = true
+
+if debugMode then print("Map Debug") end
+
+-- Load tile source and set it to a tile map
+go.property("my_tile_source", resource.tile_source("/Terrain/Level.tilesource"))
+
+function init(self)
+	if debugMode then print(("Tile Source Path: %s"):format(self.my_tile_source)) end
+	go.set("#Level", "tile_source", self.my_tile_source)
+
+	-- Assuming the tilemap is named "foreground" and you want to set all tiles to null
+	local url = "#Level"
+
+	-- Get the bounds of the tilemap
+	local tilemap = tilemap  -- Add this line
+	local x, y, width, height = tilemap.get_bounds(url)
+
+	-- Print the bounds
+	if debugMode then
+		print(("Tilemap Bounds - X: %d, Y: %d, Width: %d, Height: %d"):format(x, y, width, height))
+	end
+end

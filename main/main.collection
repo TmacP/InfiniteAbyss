@@ -1,11 +1,31 @@
 name: "main"
 collection_instances {
+  id: "Level"
+  collection: "/Terrain/Level.collection"
+  position {
+    x: -81.0
+    y: 147.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.15
+    y: 0.15
+    z: 1.0
+  }
+}
+collection_instances {
   id: "Player"
   collection: "/Player/Player.collection"
   position {
     x: 324.0
     y: 469.0
-    z: 0.0
+    z: 1.0
   }
   rotation {
     x: 0.0

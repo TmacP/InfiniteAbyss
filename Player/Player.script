@@ -5,7 +5,7 @@ local gravity = -90    -- Adjust the gravity as needed
 local swimHeight = 125   -- The max height one touch can swim up
 
 -- debug
-local debugMode = true
+local debugMode = false
 
 function init(self)
 	msg.post(".", "acquire_input_focus")  -- Acquire input focus for the script
