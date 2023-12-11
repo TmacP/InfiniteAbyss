@@ -71,11 +71,11 @@ function on_input(self, action_id, action)
 			if action.x < position.x then
 				sprite.set_hflip("#sprite", true)
 				self.facing = 1
-				if debugMode then print("self facing " .. self.facing) end
+				if debugMode then print("self facing left" .. self.facing) end
 			else
 				sprite.set_hflip("#sprite", false)
 				self.facing = 0
-				if debugMode then print("self facing " .. self.facing) end
+				if debugMode then print("self facing right" .. self.facing) end
 			end
 			
 		elseif action.released then

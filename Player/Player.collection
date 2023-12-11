@@ -1,9 +1,9 @@
-name: "Player"
+name: "PlayerCollection"
 scale_along_z: 0
 embedded_instances {
-  id: "go"
+  id: "Player"
   data: "components {\n"
-  "  id: \"Player\"\n"
+  "  id: \"PlayerScript\"\n"
   "  component: \"/Player/Player.script\"\n"
   "  position {\n"
   "    x: 0.0\n"
@@ -45,7 +45,7 @@ embedded_instances {
   "  }\n"
   "}\n"
   "embedded_components {\n"
-  "  id: \"collisionobject\"\n"
+  "  id: \"PlayerCollision\"\n"
   "  type: \"collisionobject\"\n"
   "  data: \"collision_shape: \\\"\\\"\\n"
   "type: COLLISION_OBJECT_TYPE_KINEMATIC\\n"

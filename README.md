@@ -2,5 +2,6 @@
 
 # TODO
 - [x] Collision
-- [ ] Left/Right Movement
+- [x] Left/Right Movement
+- [ ] Screen to world coords
 - [ ] Level Generation
