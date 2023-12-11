@@ -1,6 +1,6 @@
 # InfiniteAbyss
 
 # TODO
-- [ ] Collision
+- [x] Collision
 - [ ] Left/Right Movement
 - [ ] Level Generation
