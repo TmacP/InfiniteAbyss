@@ -16,14 +16,19 @@ instances {
   component_properties {
     id: "script"
     properties {
-      id: "near_z"
-      value: "-100.0"
+      id: "zoom"
+      value: "4.0"
       type: PROPERTY_TYPE_NUMBER
     }
     properties {
-      id: "far_z"
-      value: "100.0"
-      type: PROPERTY_TYPE_NUMBER
+      id: "projection"
+      value: "FIXED_ZOOM"
+      type: PROPERTY_TYPE_HASH
+    }
+    properties {
+      id: "enabled"
+      value: "true"
+      type: PROPERTY_TYPE_BOOLEAN
     }
     properties {
       id: "follow"
@@ -31,9 +36,19 @@ instances {
       type: PROPERTY_TYPE_BOOLEAN
     }
     properties {
+      id: "follow_immediately"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+    properties {
       id: "follow_target"
       value: "/Player/Player"
       type: PROPERTY_TYPE_HASH
+    }
+    properties {
+      id: "follow_lerp"
+      value: "0.5"
+      type: PROPERTY_TYPE_NUMBER
     }
   }
   scale3 {
@@ -68,7 +83,7 @@ collection_instances {
   position {
     x: 121.0
     y: 68.0
-    z: 1.0
+    z: 0.0
   }
   rotation {
     x: 0.0
@@ -106,7 +121,27 @@ embedded_instances {
   "  id: \"background\"\n"
   "  type: \"sprite\"\n"
   "  data: \"tile_set: \\\"/main/main.atlas\\\"\\n"
-  "default_animation: \\\"Tranquil_Waters\\\"\\n"
+  "default_animation: \\\"background\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "blend_mode: BLEND_MODE_ALPHA\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"midground\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"tile_set: \\\"/main/main.atlas\\\"\\n"
+  "default_animation: \\\"midground\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
   "blend_mode: BLEND_MODE_ALPHA\\n"
   "\"\n"
@@ -126,7 +161,7 @@ embedded_instances {
   position {
     x: 192.0
     y: 112.0
-    z: -1.0
+    z: 0.0
   }
   rotation {
     x: 0.0

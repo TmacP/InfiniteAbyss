@@ -11,8 +11,10 @@ game_binding = /input/game.input_bindingc
 use_accelerometer = 0
 
 [display]
-width = 360
-height = 216
+width = 960
+height = 512
+vsync = 0
+high_dpi = 0
 
 [ios]
 app_icon_120x120 = /assets/app_icons/icon_120.png
@@ -45,4 +47,14 @@ shared_state = 1
 [physics]
 gravity_y = -1000.0
 scale = 0.01
+
+[graphics]
+default_texture_mag_filter = nearest
+default_texture_min_filter = nearest
+
+[sprite]
+subpixels = 1
+
+[html5]
+scale_mode = downscale_fit
 

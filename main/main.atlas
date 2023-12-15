@@ -1,5 +1,9 @@
 images {
-  image: "/assets/Images/Tranquil_Waters.png"
+  image: "/assets/Images/environment/background.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/Images/environment/midground.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 margin: 0
