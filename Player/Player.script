@@ -1,9 +1,11 @@
 -- player.script
 
-local speed = 280      -- Adjust the speed as needed
-local gravity = -90    -- Adjust the gravity as needed
-local swimHeight = 125 -- The max height one touch can swim up
-local swimWidth = 125
+-- get screen swimWidth
+local screen_width = (sys.get_config("display.width") / 2)
+local speed = 50      -- Adjust the speed as needed
+local gravity = -25    -- Adjust the gravity as needed
+local swimHeight = 30 -- The max height one touch can swim up
+local swimWidth = 30
 
 -- debug flags
 local debugMode = false
@@ -68,7 +70,7 @@ function on_input(self, action_id, action)
 
 			-- Flip the sprite horizontal based on touch
 			local position = go.get_position()
-			if action.x < position.x then
+			if action.x < screen_width then
 				sprite.set_hflip("#sprite", true)
 				self.facing = 1
 				if debugMode then print("self facing left" .. self.facing) end

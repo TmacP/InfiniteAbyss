@@ -1,27 +1,12 @@
 image: "/assets/Images/Dark_Dirt.png"
-tile_width: 512
-tile_height: 512
+tile_width: 16
+tile_height: 16
 tile_margin: 0
 tile_spacing: 0
 collision: "/assets/Images/Dark_Dirt.png"
 material_tag: "tile"
 convex_hulls {
   index: 0
-  count: 4
-  collision_group: "Ground"
-}
-convex_hulls {
-  index: 4
-  count: 4
-  collision_group: "Ground"
-}
-convex_hulls {
-  index: 8
-  count: 4
-  collision_group: "Ground"
-}
-convex_hulls {
-  index: 12
   count: 4
   collision_group: "Ground"
 }

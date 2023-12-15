@@ -28,7 +28,7 @@ function init(self)
 	--tilemap.set_tile(url,"layer1",x,y,1)
 
 	-- Set all tiles to a specific tile index (1 in this case)
-	for i = x, 100 do
+	--[[for i = x, 100 do
 		tilemap.set_tile(url, "layer1", x, i, 1)
 		if debugMode then print(("set tile for left side - x: %d, y: %d"):format(x, i)) end
 
@@ -39,7 +39,7 @@ function init(self)
 		tilemap.set_tile(url, "layer1", width-1, i, 1)
 		if debugMode then print(("set tile for right side - x: %d, y: %d"):format(width-1, i)) end
 		i = i + 1
-	end
+	end--]]
 
 	
 end

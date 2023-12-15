@@ -1,5 +1,5 @@
 images {
-  image: "/assets/Images/Player.png"
+  image: "/assets/Images/SeaHorse_32.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 margin: 0
