@@ -2,10 +2,10 @@
 
 -- get screen swimWidth
 local screen_width = (sys.get_config("display.width") / 2)
-local speed = 50      -- Adjust the speed as needed
+local speed = 100      -- Adjust the speed as needed
 local gravity = -25    -- Adjust the gravity as needed
-local swimHeight = 30 -- The max height one touch can swim up
-local swimWidth = 30
+local swimHeight = 50 -- The max height one touch can swim up
+local swimWidth = 50
 
 -- debug flags
 local debugMode = false
