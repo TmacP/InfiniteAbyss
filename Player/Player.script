@@ -3,6 +3,7 @@
 local swim_speed = 200   -- Adjust the swim speed as needed
 local swim_duration = 0.01 -- Adjust the swim duration in seconds
 local deceleration_factor = 1.50 -- Adjust the deceleration factor as needed
+local gravity = -50 -- Adjust the gravity as needed
 
 -- Declare center_x and center_y in the global scope
 local center_x, center_y
@@ -36,10 +37,18 @@ function update(self, dt)
 		self.velocity = self.velocity * (1 - deceleration_factor * dt)
 	end
 
+	-- Apply gravity
+	self.velocity.y = self.velocity.y + gravity * dt
+	
 	-- Move the player based on swim input and acceleration
 	local dv = self.velocity * dt
 	local p = go.get_position()
 	go.set_position(p + dv)
+
+
+	-- reset correction
+	self.correction = vmath.vector3()
+	
 end
 
 function on_input(self, action_id, action)
