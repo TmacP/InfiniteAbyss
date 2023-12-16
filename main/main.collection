@@ -35,6 +35,11 @@ instances {
       value: "/Player/Player"
       type: PROPERTY_TYPE_HASH
     }
+    properties {
+      id: "follow_lerp"
+      value: "0.5"
+      type: PROPERTY_TYPE_NUMBER
+    }
   }
   scale3 {
     x: 1.0
