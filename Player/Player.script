@@ -2,14 +2,23 @@
 
 -- get screen swimWidth
 local screen_width = (sys.get_config("display.width") / 2)
+local center_x = sys.get_config("display.width") / 2
+local center_y = sys.get_config("display.height") / 2
+
 local speed = 150      -- Adjust the speed as needed
-local gravity = -70    -- Adjust the gravity as needed
+local gravity = -30    -- Adjust the gravity as needed
 local swimHeight = 90 -- The max height one touch can swim up
 local swimWidth = 90
+
+
+
+local vertical_speed 
+local horizontal_speed 
 
 -- debug flags
 local debugMode = false
 local debugCollision = false
+local debugAngle = false
 
 function init(self)
 	msg.post(".", "acquire_input_focus")  -- Acquire input focus for the script
@@ -26,18 +35,18 @@ function update(self, dt)
 
 	-- Move the player up if the touch flag is true and the current height is below swimHeight
 	if self.is_touched and self.currentHeight < swimHeight then
-		local deltaY = math.min(speed * dt, swimHeight - self.currentHeight)
+		local deltaY = math.min(vertical_speed * dt, swimHeight - self.currentHeight)
 		go.set_position(vmath.vector3(go.get_position().x, go.get_position().y + deltaY, 0))
 		self.currentHeight = self.currentHeight + deltaY
 	end
 
 	-- move the player in the direction they are facing
 	if self.is_touched and self.facing == 1  and self.currentWidth < swimWidth then
-		local deltaX = math.min(speed * dt, swimWidth - self.currentWidth)
+		local deltaX = math.min(horizontal_speed * dt, swimWidth - self.currentWidth)
 		go.set_position(vmath.vector3(go.get_position().x - deltaX, go.get_position().y, 0))
 		self.currentWidth = self.currentWidth + deltaX
 	elseif self.is_touched and self.facing == 0 and self.currentWidth < swimWidth then
-		local deltaX = math.min(speed * dt, swimWidth - self.currentWidth)
+		local deltaX = math.min(horizontal_speed * dt, swimWidth - self.currentWidth)
 		go.set_position(vmath.vector3(go.get_position().x + deltaX, go.get_position().y, 0))
 		self.currentWidth = self.currentWidth + deltaX
 	end
@@ -56,6 +65,26 @@ function on_input(self, action_id, action)
 			-- Save the initial touch position for comparison
 			self.touchStartPosition = action.x
 
+
+			-- Calculate the angle between touch position and center of the screen
+
+			local touch_angle = math.atan2(action.y - center_y, action.x - center_x)
+
+			-- Adjust speed and direction based on the touch angle
+			vertical_speed = math.sin(touch_angle) * speed
+			horizontal_speed = math.abs(math.cos(touch_angle) * speed)
+
+			-- DEBUG
+			if debugAngle then
+				print("Touch Angle: " .. touch_angle)
+				print("Vertical Speed: " .. vertical_speed)
+				print("Horizontal Speed: " .. horizontal_speed)
+			end
+			-- DEBUG end
+
+
+
+			
 			-- DEBUG
 			-- Print the touch coordinates
 			if debugMode then print("Touch coordinates: x=" .. action.x) end
