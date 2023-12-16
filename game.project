@@ -14,7 +14,7 @@ use_accelerometer = 0
 width = 960
 height = 512
 vsync = 0
-high_dpi = 1
+high_dpi = 0
 swap_interval = 1
 
 [ios]
