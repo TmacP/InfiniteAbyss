@@ -1,88 +1,69 @@
 -- player.script
 
--- get screen swimWidth
-local screen_width = (sys.get_config("display.width") / 2)
-local center_x = screen_width
-local center_y = sys.get_config("display.height") / 2
+local swim_speed = 200   -- Adjust the swim speed as needed
+local swim_duration = 0.01 -- Adjust the swim duration in seconds
+local deceleration_factor = 1.50 -- Adjust the deceleration factor as needed
 
-local speed = 150      -- Adjust the speed as needed
-local gravity = -30    -- Adjust the gravity as needed
-
-local stroke = 50 -- the length of one swim
-local stride = 0 -- count how far we swim
-
-local vertical_speed 
-local horizontal_speed 
-
+-- Declare center_x and center_y in the global scope
+local center_x, center_y
 
 function init(self)
-	msg.post(".", "acquire_input_focus")  -- Acquire input focus for the script
-	self.currentHeight = 0  -- Initialize the current height
-	self.currentWidth = 0 -- Initialize the current width
-	self.facing = 0 -- direction player is facing 0 is right 1 is left
-	-- correction vector for collision
-	self.correction = vmath.vector3()
+	msg.post(".", "acquire_input_focus")
+	self.velocity = vmath.vector3()
+	self.facing = 0
+
+	-- Additional variables for swim behavior
+	self.is_swimming = false
+	self.swim_timer = 0
+	self.deceleration_factor = 0
+	self.correction = vmath.vector3()  -- Initialize correction vector
+
+	-- Initialize center_x and center_y
+	local screen_width = (sys.get_config("display.width") / 2)
+	center_x = screen_width
+	center_y = sys.get_config("display.height") / 2
 end
 
 function update(self, dt)
-	
-	if not self.is_touched then
-	-- Apply gravity to make the player sink when not touched
-	go.set_position(vmath.vector3(go.get_position().x, go.get_position().y + gravity * dt, 0))
+	-- Update swim timer
+	if self.is_swimming then
+		self.swim_timer = self.swim_timer - dt
 	end
 
-	-- Move the player up if the touch flag is true 
-	if self.is_touched then
-		local deltaY = math.min(vertical_speed * dt)
-		local deltaX = math.min(horizontal_speed * dt)
-		go.set_position(vmath.vector3(go.get_position().x + deltaX, go.get_position().y + deltaY, 0))
+	if self.swim_timer <= 0 then
+		self.is_swimming = false
+		-- Smoothly decrease velocity using deceleration factor
+		self.velocity = self.velocity * (1 - deceleration_factor * dt)
 	end
-	
-	-- reset correction
-	self.correction = vmath.vector3()
+
+	-- Move the player based on swim input and acceleration
+	local dv = self.velocity * dt
+	local p = go.get_position()
+	go.set_position(p + dv)
 end
-
 
 function on_input(self, action_id, action)
 	if action_id == hash("touch") then
 		if action.pressed then
-			
-			-- When the screen is touched, set a flag to move the player up
-			self.is_touched = true
-			
-			-- Save the initial touch position for comparison
-			self.touchStartPosition = action.x
-
+			print("touch")
 			-- Calculate the angle between touch position and center of the screen
 			local touch_angle = math.atan2(action.y - center_y, action.x - center_x)
 
-			-- Adjust speed and direction based on the touch angle
-			vertical_speed = math.sin(touch_angle) * speed
-			horizontal_speed = math.cos(touch_angle) * speed
-			
+			-- Set the velocity based on touch angle
+			self.velocity.x = math.cos(touch_angle) * swim_speed
+			self.velocity.y = math.sin(touch_angle) * swim_speed
+
 			-- Flip the sprite horizontal based on touch
-			local position = go.get_position()
-			if action.x < screen_width then
-				sprite.set_hflip("#sprite", true)
-				self.facing = 1
-			else
-				sprite.set_hflip("#sprite", false)
-				self.facing = 0
-			end
-			
-		elseif action.released then
-			
-			-- When the touch is released, set the flag to false and reset current height
-			self.is_touched = false
-			self.touchStartPosition = nil
-			self.touchDirection = nil
+			sprite.set_hflip("#sprite", action.x < center_x)
+
+			-- Start swimming
+			self.is_swimming = true
+			self.swim_timer = swim_duration
 		end
 	end
 end
 
-
 function on_message(self, message_id, message, sender)
-	if debugCollision then print("Collision on_message") end
 	if message_id == hash("contact_point_response") then
 		if message.distance > 0 then
 			local proj = vmath.project(self.correction, message.normal * message.distance)
