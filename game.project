@@ -61,5 +61,5 @@ subpixels = 1
 scale_mode = downscale_fit
 
 [tilemap]
-max_tile_count = 6144
+max_tile_count = 10000
 

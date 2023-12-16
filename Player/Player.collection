@@ -51,6 +51,8 @@ embedded_instances {
   "mask: \\\"Ground\\\"\\n"
   "mask: \\\"Exit\\\"\\n"
   "mask: \\\"Exit1\\\"\\n"
+  "mask: \\\"Exit2\\\"\\n"
+  "mask: \\\"Exit3\\\"\\n"
   "embedded_collision_shape {\\n"
   "  shapes {\\n"
   "    shape_type: TYPE_SPHERE\\n"

@@ -1,7 +1,8 @@
 -- player.script
 local ENTRANCE1 = { x = 942, y = 226}
 local ENTRANCE2 = { x = 1215, y = 226}
-
+local ENTRANCE3 = { x = 1670, y = -488}
+local ENTRANCE4 = { x = 1960, y = -488} 
 
 local swim_speed = 200   -- Adjust the swim speed as needed
 local swim_duration = 0.01 -- Adjust the swim duration in seconds
@@ -95,6 +96,12 @@ function on_message(self, message_id, message, sender)
 			end
 			if message.group == hash("Exit1") then
 				go.set_position(vmath.vector3(ENTRANCE1.x,ENTRANCE1.y, 0), "Player")
+			end
+			if message.group == hash("Exit2") then
+				go.set_position(vmath.vector3(ENTRANCE4.x,ENTRANCE4.y, 0), "Player")
+			end
+			if message.group == hash("Exit3") then
+				go.set_position(vmath.vector3(ENTRANCE3.x,ENTRANCE3.y, 0), "Player")
 			end
 		else
 			-- take action for exit
