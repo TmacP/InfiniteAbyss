@@ -6156,6 +6156,6 @@ convex_hulls {
   collision_group: ""
 }
 collision_groups: "Ground"
-extrude_borders: 0
+extrude_borders: 1
 inner_padding: 0
 sprite_trim_mode: SPRITE_TRIM_MODE_OFF

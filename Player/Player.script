@@ -5,8 +5,8 @@ local ENTRANCE3 = { x = 1670, y = -488}
 local ENTRANCE4 = { x = 1960, y = -488} 
 
 local swim_speed = 200   -- Adjust the swim speed as needed
-local swim_duration = 0.01 -- Adjust the swim duration in seconds
-local deceleration_factor = 1.50 -- Adjust the deceleration factor as needed
+local swim_duration = 0.1 -- Adjust the swim duration in seconds
+local deceleration_factor = 1 -- Adjust the deceleration factor as needed
 local gravity = -50 -- Adjust the gravity as needed
 
 -- Declare center_x and center_y in the global scope
@@ -29,7 +29,7 @@ function init(self)
 	center_y = sys.get_config("display.height") / 2
 end
 
-function update(self, dt)
+function fixed_update(self, dt)
 	-- Update swim timer
 	if self.is_swimming then
 		self.swim_timer = self.swim_timer - dt
@@ -42,11 +42,12 @@ function update(self, dt)
 	end
 
 	-- Apply gravity
-	self.velocity.y = self.velocity.y + gravity * dt
+	self.velocity.y = math.floor(self.velocity.y + gravity * dt)
 	
 	-- Move the player based on swim input and acceleration
 	local dv = self.velocity * dt
 	local p = go.get_position()
+
 	go.set_position(p + dv)
 
 

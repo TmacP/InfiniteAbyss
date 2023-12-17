@@ -52,7 +52,27 @@ instances {
     }
     properties {
       id: "follow_lerp"
-      value: "1.0"
+      value: "0.25"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "deadzone_left"
+      value: "10.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "deadzone_bottom"
+      value: "10.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "deadzone_right"
+      value: "10.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "deadzone_top"
+      value: "10.0"
       type: PROPERTY_TYPE_NUMBER
     }
   }
@@ -67,7 +87,7 @@ instances {
   prototype: "/Enemy/fish.go"
   position {
     x: 209.0
-    y: 107.0
+    y: 428.0
     z: 1.0
   }
   rotation {
@@ -106,8 +126,8 @@ instances {
   id: "fish-dart"
   prototype: "/Enemy/fish-dart.go"
   position {
-    x: 718.0
-    y: 87.0
+    x: 685.0
+    y: 423.0
     z: 1.0
   }
   rotation {
@@ -119,6 +139,26 @@ instances {
   scale3 {
     x: 1.0
     y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "boss"
+  prototype: "/Enemy/Boss/boss.go"
+  position {
+    x: 2269.0
+    y: -397.0
+    z: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 3.0
+    y: 3.0
     z: 1.0
   }
 }
@@ -146,8 +186,8 @@ collection_instances {
   id: "Player"
   collection: "/Player/Player.collection"
   position {
-    x: 1623.0
-    y: -490.0
+    x: 2409.0
+    y: -354.0
     z: 0.0
   }
   rotation {

@@ -4,6 +4,7 @@ local SPEED = 10
 local DEAD_SPEED = 200
 
 local COLLISION_RESPONSE = hash("collision_response")
+local BULLET = hash("bullet")
 
 function init(self)
 	-- move back and forth
@@ -25,6 +26,10 @@ end
 function on_message(self, message_id, message, sender)
 	if self.dead then return end
 	if message_id == COLLISION_RESPONSE then
+		if message.other_group == BULLET then
+			-- remove the bullet
+			go.delete(message.other_id)
+
 			-- turn upside down and make it drop dead!
 			-- also flag it as dead and ignore any additional messages
 			self.dead = true
@@ -35,5 +40,6 @@ function on_message(self, message_id, message, sender)
 			go.animate(".", "position.y", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_INQUAD, duration, 0, function()
 				go.delete()
 			end)
+		end
 	end
 end

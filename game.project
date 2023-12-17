@@ -15,7 +15,7 @@ width = 960
 height = 512
 vsync = 0
 high_dpi = 0
-swap_interval = 1
+update_frequency = 60
 
 [ios]
 app_icon_120x120 = /assets/app_icons/icon_120.png
@@ -48,7 +48,7 @@ shared_state = 1
 [physics]
 gravity_y = -1000.0
 scale = 0.01
-use_fixed_timestep = 0
+use_fixed_timestep = 1
 
 [graphics]
 default_texture_mag_filter = nearest
@@ -61,5 +61,5 @@ subpixels = 1
 scale_mode = downscale_fit
 
 [tilemap]
-max_tile_count = 10000
+max_tile_count = 12000
 
